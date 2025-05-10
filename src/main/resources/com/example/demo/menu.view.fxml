@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuController">
+
+      <Label layoutX="101.0" layoutY="132.0" text="Cadastro Usuário" />
+   <Button layoutX="234.0" layoutY="255.0" mnemonicParsing="false" onAction="#onExitButtonClick" text="Sair" />
+
+</AnchorPane>
