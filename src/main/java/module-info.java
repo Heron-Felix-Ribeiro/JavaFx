@@ -10,7 +10,12 @@ module com.example.demo {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires jakarta.persistence;
+    requires org.hibernate.orm.core;
+    requires static lombok;
 
     opens com.example.demo to javafx.fxml;
+    opens com.example.demo.model to org.hibernate.orm.core;
+
     exports com.example.demo;
 }

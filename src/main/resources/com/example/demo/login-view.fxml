@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="200" prefWidth="300" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoginController">
+<AnchorPane prefHeight="300" prefWidth="300" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoginController">
 
 
     <Label fx:id="menssagemText" layoutX="54.0" layoutY="119.0" prefHeight="17.0" prefWidth="192.0" />
