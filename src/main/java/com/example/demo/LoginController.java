@@ -29,20 +29,18 @@ public class LoginController {
 
     @FXML
     protected void onLoginButtonClick(ActionEvent event) {
-
         try {
-
-            URL url = new URL("https://loclalhost:8080/api/login");
+            URL url = new URL("https://localhost:8080/api/login");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
 
-            String jsonInputString = "{\"usuario\": \"" + txtUsuario.getText() + "\", \"password\": \"" + txtSenha.getText() + "\"}";
+            String jsonUsuario = "{\"usuario\": \"" + txtUsuario.getText() + "\", \"password\": \"" + txtSenha.getText() + "\"}";
             try (OutputStream os = conn.getOutputStream()) {
-                os.write(jsonInputString.getBytes(), 0, jsonInputString.length());
+                os.write(jsonUsuario.getBytes());
             }
-
 
             int resposta = conn.getResponseCode();
             if (resposta == 200){
@@ -50,15 +48,13 @@ public class LoginController {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 StringBuilder sb = new StringBuilder();
                 String linha;
-                while (linha = br.readLine() != null) {
+                while ((linha = br.readLine()) != null) {
                     sb.append(linha);
                 }
                 br.close();
-
                 String json = sb.toString();
-                new Alert(Alert.AlertType.INFORMATION, json).showAndWait();
-            }
-            if (txtUsuario.getText().equals("admin") && txtSenha.getText().equals("admin")){
+                new Alert(Alert.AlertType.INFORMATION, json).show();
+
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource( "/com/example/demo/menu.view.fxml"));
                 Scene menuScene = new Scene(fxmlLoader.load());
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -66,12 +62,9 @@ public class LoginController {
             } else {
                 menssagemText.setText("Usuário ou senha inválidos!");
             }
-
         } catch (Exception e){
             e.printStackTrace();
             menssagemText.setText("Erro ao carregar a tela de menu.");
         }
     }
-
-
 }

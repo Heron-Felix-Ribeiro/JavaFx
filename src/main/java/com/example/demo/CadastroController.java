@@ -30,22 +30,23 @@ public class CadastroController {
 
     @FXML
     public void OnClickBtnSalvar (ActionEvent event) {
-        EntityManager em = JPAUtils.getEntityManager();
+        try {
+            EntityManager em = JPAUtils.getEntityManager();
 
-        UsuarioDAO dao = new UsuarioDAO(em);
-        Usuario usuario = new Usuario();
+            UsuarioDAO dao = new UsuarioDAO(em);
+            Usuario usuario = new Usuario();
 
-        usuario.setUsuario(txtNome.getText());
-        usuario.setEmail(txtEmail.getText());
+            usuario.setUsuario(txtNome.getText());
+            usuario.setEmail(txtEmail.getText());
 
-        dao.salvar(usuario);
+            dao.salvar(usuario);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Salvo com sucesso!");
-        alert.showAndWait();
+            new Alert (Alert.AlertType.INFORMATION, "Salvo com sucesso!" + usuario.getId()).show();
 
-        txtNome.clear();
-        txtEmail.clear();
-        txtCodigo.clear();
+            txtCodigo.setText(usuario.getId().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -56,8 +57,6 @@ public class CadastroController {
             Scene menuScene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(menuScene);
-
-
         } catch (Exception e) {
             e.printStackTrace();
             menssagemText.setText("Erro ao carregar a tela de menu.");
