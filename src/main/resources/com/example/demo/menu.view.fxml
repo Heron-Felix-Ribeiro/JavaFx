@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuController" stylesheets="/com/example/demo/css/style.css">
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuController">
 
-      <Label fx:id="menssagemText" layoutX="14.0" layoutY="46.0" text="Cadastrar Novo Admin" />
+      <Label fx:id="menssagemText" layoutX="101.0" layoutY="132.0" text="Cadastro Usuário" />
    <Button layoutX="234.0" layoutY="255.0" mnemonicParsing="false" onAction="#onExitButtonClick" text="Sair" />
-   <Button layoutX="150.0" layoutY="42.0" mnemonicParsing="false" onAction="#onMenuButtonClick" text="Cadastrar" />
+   <Button layoutX="121.0" layoutY="170.0" mnemonicParsing="false" onAction="#onMenuButtonClick" text="Cadastro" />
 
 </AnchorPane>
