@@ -1,29 +1,35 @@
 package com.example.demo;
 
-import com.example.demo.model.DAO.UsuarioDAO;
-import com.example.demo.model.Usuario;
-import com.example.demo.utils.JPAUtils;
-import jakarta.persistence.EntityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class CadastroController {
 
     @FXML
     private TextField txtNome;
-
     @FXML
     private TextField txtEmail;
-
     @FXML
-    private TextField txtCodigo;
+    private TextField txtSenha;
+    @FXML
+    private TextField cpf;
+    private String  txtTipoUsuario = "ADMINISTRADOR";
+    @FXML
+    private DatePicker txtDataNascimento;
 
     @FXML
     private Label menssagemText;
@@ -31,21 +37,41 @@ public class CadastroController {
     @FXML
     public void OnClickBtnSalvar (ActionEvent event) {
         try {
-            EntityManager em = JPAUtils.getEntityManager();
+            URL url = new URL("http://localhost:8080/usuario");
 
-            UsuarioDAO dao = new UsuarioDAO(em);
-            Usuario usuario = new Usuario();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
 
-            usuario.setUsuario(txtNome.getText());
-            usuario.setEmail(txtEmail.getText());
+            String jsonUsuario = "{\"usuario\": \"" + txtNome.getText() + "\"," +
+                    " \"email\": \"" + txtEmail.getText() + "\"," +
+                    " \"senha\": \"" + txtSenha.getText() + "\"," +
+                    " \"cpf\": \"" + cpf.getText() + "\"," +
+                    " \"tipoUsuario\": \"" + txtTipoUsuario + "\"," +
+                    " \"dataNascimento\": \"" + txtDataNascimento.getValue() + "\"}";
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(jsonUsuario.getBytes());
+            }
 
-            dao.salvar(usuario);
+            int resposta = conn.getResponseCode();
+            if (resposta == 200) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String linha;
+                while ((linha = br.readLine()) != null) {
+                    sb.append(linha);
+                }
+                br.close();
+                String json = sb.toString();
+                new Alert(Alert.AlertType.INFORMATION, "Cadastro realizado com sucesso!").show();
 
-            new Alert (Alert.AlertType.INFORMATION, "Salvo com sucesso!" + usuario.getId()).show();
-
-            txtCodigo.setText(usuario.getId().toString());
+            } else {
+                menssagemText.setText("Erro ao realizar o cadastro!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            menssagemText.setText("Erro ao conectar com o servidor.");
         }
     }
 

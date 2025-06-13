@@ -3,15 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CadastroController">
+<AnchorPane prefHeight="300.0" prefWidth="300.0" stylesheets="@css/cadastro.module.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CadastroController">
    <children>
-      <Label layoutX="28.0" layoutY="35.0" text="Código" />
-      <Label layoutX="29.0" layoutY="77.0" text="Nome" />
-      <Label layoutX="31.0" layoutY="114.0" text="E-mail" />
-      <TextField id="txtCodigo" fx:id="txtCodigo" disable="true" layoutX="76.0" layoutY="31.0" promptText="Auto" />
-      <TextField id="txtNome" fx:id="txtNome" layoutX="76.0" layoutY="73.0" promptText="Nome do usuário" />
-      <TextField id="txtEmail" fx:id="txtEmail" layoutX="76.0" layoutY="110.0" promptText="Email" />
-      <Button layoutX="270.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnClickBtnSalvar" text="Salvar" />
-      <Button layoutX="204.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnClickBtnVoltar" text="Voltar" />
+      <Label layoutY="68.0" text="Nome" />
+      <Label layoutX="175.0" layoutY="68.0" text="E-mail" />
+      <TextField id="txtNome" fx:id="txtNome" layoutX="45.0" layoutY="61.0" prefHeight="25.0" prefWidth="112.0" promptText="Nome do usuário" />
+      <TextField id="txtEmail" fx:id="txtEmail" layoutX="222.0" layoutY="61.0" prefHeight="25.0" prefWidth="112.0" promptText="Email" />
+      <Button layoutX="277.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnClickBtnSalvar" text="Salvar" />
+      <Button layoutX="208.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnClickBtnVoltar" text="Voltar" />
+      <Label layoutX="5.0" layoutY="115.0" text="CPF" />
+      <TextField id="txtNome" fx:id="cpf" layoutX="45.0" layoutY="108.0" prefHeight="25.0" prefWidth="112.0" promptText="Ex: 111.111.111-11" />
+      <Label layoutX="35.0" layoutY="173.0" text="Data Nascimento" />
+      <Label layoutX="174.0" layoutY="114.0" text="Senha" />
+      <TextField id="txtEmail" fx:id="txtSenha" layoutX="222.0" layoutY="107.0" prefHeight="25.0" prefWidth="112.0" promptText="Senha" />
+      <DatePicker fx:id="txtDataNascimento" layoutX="157.0" layoutY="162.0" />
+      <Label fx:id="menssagemText" layoutX="67.0" layoutY="210.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,52 @@
+AnchorPane {
+    -fx-background-color: #000000;
+    -fx-padding: 15px;
+}
+
+Label {
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+    -fx-text-fill: #ffffff;
+}
+
+TextField {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #555555;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px;
+    -fx-text-fill: #ffffff;
+}
+
+DatePicker {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #555555;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px;
+    -fx-text-fill: #ffffff;
+}
+
+Button {
+    -fx-background-color: #1E90FF;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+Button:hover {
+    -fx-background-color: #1C86EE;
+}
+
+Button:pressed {
+    -fx-background-color: #1874CD;
+}
+
+Label#error {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
